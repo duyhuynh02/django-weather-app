@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        }
+
+        #main {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: blue;
+        }
+
+        input[type='text'] {
+            width: 10%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        input[type='submit'] {
+            width: 7%;
+            padding: 5px;
+            background: black;
+            color: white;
+            text-transform: uppercase;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+	<div id="main">
+	    <h1>What is the weather like?</h1>
+	    <div>
+			<form method="post">
+    				{% csrf_token %}
+    				{{ form }}
+   			 	<input type="submit" value="Add City">
+   			 	{% if error_msg %}
+   			 		{{ message_error }}
+   			 	{% endif %}
+			</form>
+		</div>	
+	    {% for city_weather in cities_list %}
+	        <h3>{{ city_weather.City }}</h3>
+	        <h3>{{ city_weather.Weather }}</h3>
+	        <h3>{{ city_weather.Temperature }}°F</h3>
+	        <h3>{{ city_weather.Wind }}</h3>
+	        <h3>{{ city_weather.Icon }}</h3>
+	        <h3>----------------------</h3>
+	    {% endfor %}
+	</div>
+</body>
+</html>
