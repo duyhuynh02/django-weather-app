@@ -68,30 +68,30 @@
 </head>
 
 <body>
-	<div id="main">
-	    <h1>What is the weather like?</h1>
-	    <div>
-			<form method="post">
-    				{% csrf_token %}
-    				{{ form }}
-   			 	<input type="submit" value="Add City">
-   			 	{% if message %}
-   			 		<div> 
+    <div id="main">
+        <h1>What is the weather like?</h1>
+        <div>
+            <form method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                <input type="submit" value="Add City">
+                {% if message %}
+                    <div> 
                         <div class="alert">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;
                             </span>
                                 {{ message }}
                         </div> 
-                    </div>   			 	
+                    </div>                  
                 {% endif %}
-			</form>
-		</div>	
-	    {% for city_weather in cities_list %}
-	        <h3>{{ city_weather.City }}</h3> 
-	        <h3>{{ city_weather.Weather }}</h3>
-	        <h3>{{ city_weather.Temperature }}°F</h3>
-	        <h3>{{ city_weather.Wind }}</h3>
-	        <h3>{{ city_weather.Icon }}</h3>
+            </form>
+        </div>  
+        {% for city_weather in cities_list %}
+            <h3>{{ city_weather.City }}</h3> 
+            <h3>{{ city_weather.Weather }}</h3>
+            <h3>{{ city_weather.Temperature }}°F</h3>
+            <h3>{{ city_weather.Wind }}</h3>
+            <h3>{{ city_weather.Icon }}</h3>
             <div>
                 <a href="{% url 'delete_city' city_weather.City %}">
                     <button method="delete" style="background-color:green; 
@@ -100,8 +100,8 @@
                     </button>
                 </a>
             </div>
-	        <h3>----------------------</h3>
-	    {% endfor %}
-	</div>
+            <h3>----------------------</h3>
+        {% endfor %}
+    </div>
 </body>
 </html>
